@@ -1,36 +1,48 @@
-import image from '../assets/Images/oc1.jpg';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-function JsContent(){
+interface ContentItem {
+    _id: string;
+    Img: string;
+    Judul: string;
+    IsiJudul: string;
+    Isi: string[];
+}
+
+function JsContent() {
+    const [content, setContent] = useState<ContentItem[]>([]);
+
+    useEffect(() => {
+        // Fetch data from the backend
+        axios.get('http://localhost:7272/api/js') // Replace with your actual endpoint
+            .then(response => {
+                if (Array.isArray(response.data.Content)) {
+                    setContent(response.data.Content); // Set state if Content is an array
+                } else {
+                    console.error("Unexpected data format:", response.data);
+                }
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, []);
 
     return (
         <>
-        <div className="Content">
-            <div className="cards-container">
-        <div className="card">
-            <div className="card-image" style={{ backgroundImage: `url(${image})` }}></div>
-            <div className="card-content">
-                <h3>Variables on Javascript</h3>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perferendis totam, excepturi hic eaque reiciendis expedita vitae quaerat dolore amet nostrum odit nisi libero eos qui saepe cupiditate fugit ad delectus.</p>
-            </div>  
-        </div>
-
-        <div className="card">
-            <div className="card-image" style={{ backgroundImage: `url(${image})` }}></div>
-            <div className="card-content">
-                <h3>Typedata on Javascript</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Alias dignissimos repudiandae pariatur recusandae voluptatibus maxime aspernatur sequi eveniet totam unde adipisci beatae optio perspiciatis ea accusantium qui labore, eligendi autem?</p>
+            <div className="Content">
+                <div className="cards-container">
+                    {content.map((item) => (
+                        <div className="card" key={item._id}>
+                            <div
+                                className="card-image"
+                                style={{ backgroundImage: `url(${item.Img})` }}
+                            ></div>
+                            <div className="card-content">
+                                <h3>{item.Judul}</h3>
+                                <p>{item.IsiJudul}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
-
-        <div className="card">
-            <div className="card-image" style={{ backgroundImage: `url(${image})` }}></div>
-            <div className="card-content">
-                <h3>Singapore</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Totam ratione doloribus itaque repudiandae. Alias ad tempore blanditiis ratione similique, culpa mollitia rem tenetur dignissimos at saepe dolores quo! Vero, nesciunt?</p>
-            </div>
-        </div>
-    </div>
-        </div>
         </>
     )
 }
