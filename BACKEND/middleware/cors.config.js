@@ -1,17 +1,18 @@
-require('dotenv').config()
+require('dotenv').config();
 
-var allowlist = [process.env.DOMAIN.toString()]
+var allowlist = [process.env.DOMAIN.toString()];
 var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
   if (allowlist.indexOf(req.header('Origin')) !== -1) {
     corsOptions = {
-        "origin" : true,
-        "methods" : "GET, POST",
-    }
+        origin: true, // Automatically set the origin
+        credentials: true, // Allow credentials (cookies, etc.)
+        methods: "GET, POST", // Specify allowed methods
+    };
   } else {
-    corsOptions = { origin: false }
+    corsOptions = { origin: false }; // Block access
   }
-  callback(null, corsOptions) 
-}
+  callback(null, corsOptions); 
+};
 
-module.exports = corsOptionsDelegate
+module.exports = corsOptionsDelegate;

@@ -1,3 +1,10 @@
 .env
 node_modules
 test
+beritamodel.js
+menumodel.js
+beritacontroller.js
+menucontroller.js
+menuroutes.js
+beritaroutes.js
+faker.js

@@ -17,6 +17,7 @@ const jsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    
     Isi:{
         type: Array,
         required: true
