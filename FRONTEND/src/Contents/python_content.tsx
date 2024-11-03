@@ -15,7 +15,7 @@ function PythonContent() {
     const [expandedCard, setExpandedCard] = useState<ContentItem | null>(null);
 
     useEffect(() => {
-        axios.get('http://localhost:7272/api/ts')
+        axios.get('http://localhost:7272/api/py')
             .then(response => {
                 if (Array.isArray(response.data.Content)) {
                     setContent(response.data.Content);

@@ -25,7 +25,7 @@ const pySchema = new mongoose.Schema({
 });
 
 // Buat model Menu menggunakan skema di atas
-const Content = mongoose.model('Content', pySchema);
+const pyContent = mongoose.model('pyContent', pySchema);
 
 // Export model agar bisa digunakan di file lain
-module.exports = Content;
+module.exports = pyContent;

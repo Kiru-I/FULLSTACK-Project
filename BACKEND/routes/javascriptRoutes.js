@@ -1,32 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const Content = require('../models/javascriptModel')
+const jsContent = require('../models/javascriptModel')
 require('dotenv').config()
 const key = process.env.JWT_KEY.toString()
-const Controller = require('../controllers/javascriptController'); // Import controller
+const jsController = require('../controllers/javascriptController'); // Import controller
 const jwt = require('jsonwebtoken')
 const d_token = require('../middleware/token');
 
 // AMAN
 // Mendapatkan Berita dengan ID
-router.get('/t-id/:token', Controller.secureGetContentById);
+router.get('/t-id/:token', jsController.secureGetContentById);
 
 // Mendapatkan Semua Berita
-router.get('/t-all/:token', Controller.secureGetAllContent);
+router.get('/t-all/:token', jsController.secureGetAllContent);
 
 // GA AMAN
 // Route untuk menambahkan menu baru
-router.post('/add/:token', Controller.Content);
+router.post('/add/:token', jsController.Content);
 
 // Route untuk mendapatkan semua menu
-router.get('/', Controller.getSemuaContent);
+router.get('/', jsController.getSemuaContent);
 
 // Route untuk mendapatkan satu menu berdasarkan ID
-router.get('/:id', Controller.getContentById);
+router.get('/:id', jsController.getContentById);
 
 // Route untuk mengupdate menu berdasarkan ID
-router.put('/:id', Controller.updateContent);
+router.put('/:id', jsController.updateContent);
 
 // Route untuk menghapus menu berdasarkan ID
-router.delete('/:id', Controller.deleteContent);
+router.delete('/:id', jsController.deleteContent);
 module.exports = router;

@@ -1,5 +1,5 @@
 // Import model Menu
-const Content = require('../models/pythonModel');
+const pyContent = require('../models/pythonModel');
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const key2 = process.env.JWT_KEY_2.toString()
@@ -12,7 +12,7 @@ exports.secureGetContentById = async (req, res) => {
     const tiket_value = jwt.verify(tiket, key)
     if(tiket_value.stat[1] === "byid" && tiket_value.stat[0] === key2) {
       try {
-        const ContentbyId = await Content.findById(tiket_value.id); // Mengambil 1 data berita
+        const ContentbyId = await pyContent.findById(tiket_value.id); // Mengambil 1 data berita
         res.status(200).json({
           message: 'Berhasil mendapatkan content',
           Content: ContentbyId
@@ -37,7 +37,7 @@ exports.secureGetAllContent = async (req, res) => {
     const tiket_value = jwt.verify(tiket, key)
     if(tiket_value.stat[1] === "all" && tiket_value.stat[0] === key2) {
       try {
-        const AllContent = await Content.find(); // Mengambil 1 data berita
+        const AllContent = await pyContent.find(); // Mengambil 1 data berita
         res.status(200).json({
           message: 'Berhasil mendapatkan content',
           Content: AllContent
@@ -61,7 +61,7 @@ exports.secureGetAllContent = async (req, res) => {
 // Controller untuk membuat menu baru
 exports.Content = async (req, res) => {
   try {
-    const ContentBaru = new Content(req.body); // Data menu dikirimkan melalui body request
+    const ContentBaru = new pyContent(req.body); // Data menu dikirimkan melalui body request
     const ContentTersimpan = await ContentBaru.save();
     res.status(201).json({
       message: 'Content berhasil ditambahkan',
@@ -78,7 +78,7 @@ exports.Content = async (req, res) => {
 // Controller untuk mendapatkan semua menu
 exports.getSemuaContent = async (req, res) => {
   try {
-    const semuaContent = await Content.find(); // Mengambil semua data menu
+    const semuaContent = await pyContent.find(); // Mengambil semua data menu
     res.status(200).json({
       message: 'Berhasil mendapatkan semua Content',
       Content: semuaContent
@@ -94,7 +94,7 @@ exports.getSemuaContent = async (req, res) => {
 // Controller untuk mendapatkan satu menu berdasarkan ID
 exports.getContentById = async (req, res) => {
   try {
-    const content = await Content.findById(req.params.id); // Mengambil menu berdasarkan ID
+    const content = await pyContent.findById(req.params.id); // Mengambil menu berdasarkan ID
     if (!content) {
       return res.status(404).json({
         message: 'Content tidak ditemukan'
@@ -116,7 +116,7 @@ exports.getContentById = async (req, res) => {
 // Controller untuk mengupdate menu
 exports.updateContent = async (req, res) => {
   try {
-    const contentDiupdate = await Content.findByIdAndUpdate(req.params.id, req.body, {
+    const contentDiupdate = await pyContent.findByIdAndUpdate(req.params.id, req.body, {
       new: true, // Mengembalikan menu yang sudah di-update
       runValidators: true // Menjalankan validasi berdasarkan schema
     });
@@ -140,7 +140,7 @@ exports.updateContent = async (req, res) => {
 // Controller untuk menghapus menu
 exports.deleteContent = async (req, res) => {
   try {
-    const contentDihapus = await Content.findByIdAndDelete(req.params.id);
+    const contentDihapus = await pyContent.findByIdAndDelete(req.params.id);
     if (!contentDihapus) {
       return res.status(404).json({
         message: 'Content tidak ditemukan'

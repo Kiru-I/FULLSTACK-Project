@@ -15,6 +15,7 @@ app.use(cookieParser());
 app.use(cors(corsOptionsDelegate));
 
 // Gunakan route menu
+app.use('/api/py', require('./routes/pythonRoutes'));
 app.use('/api/js', require('./routes/javascriptRoutes'));
 app.use('/yopipiw', require('./routes/tokenRoutes'));
 

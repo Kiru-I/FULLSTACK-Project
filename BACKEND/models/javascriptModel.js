@@ -25,7 +25,7 @@ const jsSchema = new mongoose.Schema({
 });
 
 // Buat model Menu menggunakan skema di atas
-const Content = mongoose.model('Content', jsSchema);
+const jsContent = mongoose.model('jsContent', jsSchema);
 
 // Export model agar bisa digunakan di file lain
-module.exports = Content;
+module.exports = jsContent;
