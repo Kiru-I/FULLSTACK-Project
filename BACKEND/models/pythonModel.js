@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 // Buat skema Menu Makanan
-const jsSchema = new mongoose.Schema({
+const pySchema = new mongoose.Schema({
   
     Img:{
     type: String,
@@ -25,7 +25,7 @@ const jsSchema = new mongoose.Schema({
 });
 
 // Buat model Menu menggunakan skema di atas
-const Content = mongoose.model('Content', jsSchema);
+const Content = mongoose.model('Content', pySchema);
 
 // Export model agar bisa digunakan di file lain
 module.exports = Content;

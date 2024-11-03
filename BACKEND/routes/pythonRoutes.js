@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const Content = require('../models/javascriptModel')
+const Content = require('../models/pythonModel')
 require('dotenv').config()
 const key = process.env.JWT_KEY.toString()
-const Controller = require('../controllers/javascriptController'); // Import controller
+const Controller = require('../controllers/pythonController'); // Import controller
 const jwt = require('jsonwebtoken')
 const d_token = require('../middleware/token');
 

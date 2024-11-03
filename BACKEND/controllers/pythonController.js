@@ -1,5 +1,5 @@
 // Import model Menu
-const Content = require('../models/javascriptModel');
+const Content = require('../models/pythonModel');
 require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const key2 = process.env.JWT_KEY_2.toString()
