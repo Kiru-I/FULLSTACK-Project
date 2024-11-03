@@ -10,12 +10,12 @@ interface ContentItem {
     Isi: string[];
 }
 
-function JsContent() {
+function PythonContent() {
     const [content, setContent] = useState<ContentItem[]>([]);
     const [expandedCard, setExpandedCard] = useState<ContentItem | null>(null);
 
     useEffect(() => {
-        axios.get('http://localhost:7272/api/js')
+        axios.get('http://localhost:7272/api/ts')
             .then(response => {
                 if (Array.isArray(response.data.Content)) {
                     setContent(response.data.Content);
@@ -74,4 +74,4 @@ function JsContent() {
     );
 }
 
-export default JsContent;
+export default PythonContent;

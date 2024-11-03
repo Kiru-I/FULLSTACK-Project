@@ -5,7 +5,7 @@ import About from '../navbar/about';
 import Contact from '../navbar/contact';
 import Help from '../navbar/help';
 import JavaScript from '../navbar/javascript';
-import TypeScript from '../navbar/typescript';
+import Python from '../navbar/python';
 import Navbar from '../navbar/navbar';
 
 const NavRouted: React.FC = () => {
@@ -18,7 +18,7 @@ const NavRouted: React.FC = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/help" element={<Help />} />
         <Route path="/javascript" element={<JavaScript />} />
-        <Route path="/typescript" element={<TypeScript />} />
+        <Route path="/python" element={<Python />} />
       </Routes>
     </Router>
   );

@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
         </li>
         <li>
           <ul><Link to="/javascript">JavaScript</Link></ul>
-          <ul><Link to="/typescript">TypeScript</Link></ul>
+          <ul><Link to="/python">Python</Link></ul>
         </li>
     </nav>
   );
