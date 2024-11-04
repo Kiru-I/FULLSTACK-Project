@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from './js_content.module.css';
+import styles from './cardstyle.module.css';
 
 interface ContentItem {
     _id: string;
