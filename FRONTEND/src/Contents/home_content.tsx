@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import styles from './cardstyle.module.css';
 
 interface ContentItem {
@@ -12,7 +13,7 @@ interface ContentItem {
 
 function PythonContent() {
     const [content, setContent] = useState<ContentItem[]>([]);
-    const [expandedCard, setExpandedCard] = useState<ContentItem | null>(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:7272/api/home')
@@ -27,28 +28,8 @@ function PythonContent() {
     }, []);
 
     const handleCardClick = (item: ContentItem) => {
-        setExpandedCard(item);
+        navigate('/python'); // Navigate to /python on card click
     };
-
-    const handleBackClick = () => {
-        setExpandedCard(null);
-    };
-
-    if (expandedCard) {
-        return (
-            <div className={styles.singleContentView}>
-                <button onClick={handleBackClick}>Back to All Content</button>
-                <div className={styles.contentDetail}>
-                    <h2>{expandedCard.Judul}</h2>
-                    <p>{expandedCard.IsiJudul}</p>
-                    <img src={expandedCard.Img} alt={expandedCard.Judul} />
-                    {expandedCard.Isi.map((paragraph, index) => (
-                        <p key={index}>{paragraph}</p>
-                    ))}
-                </div>
-            </div>
-        );
-    }
 
     return (
         <div className={styles.Content}>
